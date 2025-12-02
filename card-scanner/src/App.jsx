@@ -15,9 +15,10 @@ export default function App() {
   const canvasRef = useRef(null);
   const streamRef = useRef(null);
 
-  // CHANGE THESE TWO LINES ONLY
-  const GEMINI_API_KEY = "AIzaSyDtMevBXfNHPF3yl_-Grd7ey7nJotGp8ik";                    // ← put your key
-  const SHEET_WEBHOOK = "https://script.google.com/macros/s/AKfycbzG0GYDKokcSfpJ15lw0LTiepkkniEiO61qbb9L2UNNO6XqulrHCDoNBXWHbNtXuFGRBA/exec"; // ← your Apps Script URL
+  // CHANGE THESE TWO LINES ONLY: prefer env vars for Vercel deployment
+  // Use Vite env variables VITE_GEMINI_API_KEY and VITE_SHEET_WEBHOOK in your Vercel project settings
+  const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "AIzaSyDtMevBXfNHPF3yl_-Grd7ey7nJotGp8ik";
+  const SHEET_WEBHOOK = import.meta.env.VITE_SHEET_WEBHOOK || "https://script.google.com/macros/s/AKfycbzG0GYDKokcSfpJ15lw0LTiepkkniEiO61qbb9L2UNNO6XqulrHCDoNBXWHbNtXuFGRBA/exec";
 
   // Start camera (works on phone + desktop)
   const startCamera = async () => {
