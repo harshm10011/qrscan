@@ -39,3 +39,11 @@ Follow these steps to deploy this Vite app to Vercel (recommended for static sit
 Notes:
 - We added `vercel.json` to configure the build to use `@vercel/static-build` and to route all paths to `index.html` for SPA behavior.
 - Avoid committing secret values into the source; use environment variables in Vercel instead.
+
+Security notes (important):
+- The Gemini API key is currently used in client-side code (via Vite env variable). Client-side keys are visible to users and are not secret. If you plan to deploy publicly, consider creating a server-side proxy (e.g., Vercel Serverless Function under `/api`) to call the Gemini API, and store the API key in the server environment instead.
+- For local development, create a `.env.local` with the following entries and do not commit it:
+	```bash
+	VITE_GEMINI_API_KEY="your-key-here"
+	VITE_SHEET_WEBHOOK="https://script.google.com/..."
+	```
